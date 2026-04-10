@@ -5,7 +5,7 @@
 
 // --- VERIFICAR SESIÓN ---
 // Lo primero: verificar que haya un usuario logueado
-// Si no hay sesión, redirigir al login
+// Si no hay sesión, redirigir al login :D
 const usuarioActual = obtenerUsuarioActual();
 
 if (!usuarioActual) {
