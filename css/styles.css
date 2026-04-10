@@ -1,89 +1,75 @@
 /* ==============================
-   VARIABLES CSS
-   Aquí definimos los colores y valores
-   que usaremos en toda la página
+   VARIABLES CSS — ACME BANCO
    ============================== */
 :root {
-    /* --- Colores de marca (no cambian con el tema) --- */
-    --azul-primario: #1a56db;
-    --azul-hover: #1648b8;
-    --verde: #16a34a;
-    --rojo: #dc2626;
+    --azul-primario: #1a4fd6;
+    --azul-hover:    #1440b8;
+    --azul-claro:    #4a7fe8;
+    --navy-deep:     #0b1a3d;
+    --verde:         #16a34a;
+    --rojo:          #dc2626;
 
-    /* --- Variables semánticas (MODO CLARO por defecto) ---
-       Estas sí cambian cuando activamos el modo oscuro */
-    --bg-body: #f8fafc;
-    --bg-surface: #ffffff;
-    --bg-surface-2: #f1f5f9;
-    --bg-input: #ffffff;
-    --bg-hover: #f1f5f9;
-    --bg-active: #e8f0fe;
-    --bg-active-text: #1a56db;
+    --bg-body:       #f0f4fa;
+    --bg-surface:    #ffffff;
+    --bg-surface-2:  #f4f7fc;
+    --bg-input:      #ffffff;
+    --bg-hover:      #eef2fb;
+    --bg-active:     #dde8ff;
+    --bg-active-text:#1a4fd6;
 
-    --text-primary: #1e293b;
-    --text-secondary: #334155;
-    --text-muted: #94a3b8;
-    --text-label: #475569;
+    --text-primary:  #0b1a3d;
+    --text-secondary:#1e3260;
+    --text-muted:    #8494b4;
+    --text-label:    #4a5a80;
 
-    --border-color: #e2e8f0;
-    --border-input: #e2e8f0;
-    --border-focus: rgba(26, 86, 219, 0.15);
+    --border-color:  #d8e2f4;
+    --border-input:  #cdd9f0;
+    --border-focus:  rgba(26, 79, 214, 0.18);
 
-    --rojo-suave: #fef2f2;
-    --verde-suave: #f0fdf4;
-    --azul-suave: #e8f0fe;
+    --rojo-suave:    #fef2f2;
+    --verde-suave:   #f0fdf4;
+    --azul-suave:    #dde8ff;
 
-    --sombra: 0 1px 3px rgba(0,0,0,0.07), 0 4px 12px rgba(0,0,0,0.04);
-    --sombra-lg: 0 8px 30px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+    --sombra:        0 1px 4px rgba(11,26,61,0.07), 0 4px 16px rgba(11,26,61,0.05);
+    --sombra-lg:     0 8px 40px rgba(11,26,61,0.14), 0 2px 10px rgba(11,26,61,0.08);
+    --sombra-card:   0 24px 64px rgba(11,26,61,0.36), 0 4px 20px rgba(26,79,214,0.18);
 
-    --radio: 12px;
-    --radio-sm: 8px;
-    --transicion: 0.2s ease;
+    --radio:         14px;
+    --radio-sm:      9px;
+    --transicion:    0.2s ease;
 }
 
-/* ==============================
-   MODO OSCURO
-   Cuando el <html> tiene data-theme="dark",
-   reemplazamos las variables por colores oscuros
-   ============================== */
 [data-theme="dark"] {
-    --bg-body: #0f172a;
-    --bg-surface: #1e293b;
-    --bg-surface-2: #263447;
-    --bg-input: #1e2d42;
-    --bg-hover: #2d3f57;
-    --bg-active: #1a2f50;
-    --bg-active-text: #60a5fa;
+    --bg-body:       #080f23;
+    --bg-surface:    #111c38;
+    --bg-surface-2:  #172040;
+    --bg-input:      #131f42;
+    --bg-hover:      #1e2d58;
+    --bg-active:     #162a5c;
+    --bg-active-text:#6b9cf8;
 
-    --text-primary: #e2e8f0;
-    --text-secondary: #cbd5e1;
-    --text-muted: #64748b;
-    --text-label: #94a3b8;
+    --text-primary:  #e4ecff;
+    --text-secondary:#c0ccec;
+    --text-muted:    #566080;
+    --text-label:    #8a9dc0;
 
-    --border-color: #334155;
-    --border-input: #334155;
-    --border-focus: rgba(96, 165, 250, 0.2);
+    --border-color:  #1e2d58;
+    --border-input:  #223060;
+    --border-focus:  rgba(107, 156, 248, 0.22);
 
-    --rojo-suave: #3b1515;
-    --verde-suave: #0f2d1a;
-    --azul-suave: #1a2f50;
+    --rojo-suave:    #3a1212;
+    --verde-suave:   #0c2418;
+    --azul-suave:    #162a5c;
 
-    --sombra: 0 1px 3px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2);
-    --sombra-lg: 0 8px 30px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3);
+    --sombra:        0 1px 4px rgba(0,0,0,0.35), 0 4px 16px rgba(0,0,0,0.25);
+    --sombra-lg:     0 8px 40px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3);
+    --sombra-card:   0 24px 64px rgba(0,0,0,0.6), 0 4px 20px rgba(26,79,214,0.2);
 
     --verde: #22c55e;
-    --rojo: #f87171;
+    --rojo:  #f87171;
 }
 
-/* ==============================
-   RESET Y BASE
-   Eliminamos márgenes/rellenos por defecto
-   ============================== */
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'DM Sans', sans-serif;
@@ -101,7 +87,7 @@ h1, h2, h3 {
 }
 
 /* ==============================
-   LOGO
+   LOGO — ACME BANCO
    ============================== */
 .logo {
     display: flex;
@@ -109,48 +95,49 @@ h1, h2, h3 {
     gap: 10px;
 }
 
-/* El icono cuadrado con la "A" */
 .logo-icon {
     width: 44px;
     height: 44px;
-    background: linear-gradient(135deg, var(--azul-primario), #3b82f6);
+    background: linear-gradient(145deg, #2060e8 0%, #0b1a3d 100%);
     color: #ffffff;
-    border-radius: 10px;
+    border-radius: 11px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
-    font-size: 1.3rem;
     flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(26,86,219,0.35);
+    box-shadow: 0 4px 14px rgba(26,79,214,0.38);
+    overflow: hidden;
 }
+
+.logo-icon svg { width: 24px; height: 24px; }
 
 .logo-icon--sm {
     width: 36px;
     height: 36px;
-    font-size: 1rem;
+    border-radius: 9px;
+    box-shadow: 0 3px 10px rgba(26,79,214,0.3);
 }
+
+.logo-icon--sm svg { width: 19px; height: 19px; }
 
 .logo-text {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
     color: var(--text-primary);
 }
 
 /* ==============================
-   BOTÓN DE TEMA (Claro / Oscuro)
-   Botón circular flotante en las páginas de auth
-   y en el header del dashboard
+   BOTÓN DE TEMA
    ============================== */
 .theme-toggle {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1.5px solid rgba(255,255,255,0.25);
-    background: rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.9);
+    border: 1.5px solid rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.88);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -160,11 +147,10 @@ h1, h2, h3 {
 }
 
 .theme-toggle:hover {
-    background: rgba(255,255,255,0.2);
-    transform: scale(1.05);
+    background: rgba(255,255,255,0.18);
+    transform: scale(1.06);
 }
 
-/* Versión del botón para el dashboard (fondo claro) */
 .theme-toggle--dash {
     border-color: var(--border-color);
     background: var(--bg-surface);
@@ -178,7 +164,6 @@ h1, h2, h3 {
 
 /* ==============================
    PÁGINAS DE AUTENTICACIÓN
-   (index.html, registro.html, recuperar.html)
    ============================== */
 .page-auth {
     display: flex;
@@ -186,11 +171,37 @@ h1, h2, h3 {
     justify-content: center;
     min-height: 100vh;
     padding: 20px;
-    background: linear-gradient(145deg, #0a1628 0%, #162544 50%, #1a3a6b 100%);
     position: relative;
+    overflow-x: hidden;
+    background:
+        radial-gradient(ellipse 80% 60% at 15% 8%, rgba(26,79,214,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 85% 92%, rgba(74,127,232,0.16) 0%, transparent 60%),
+        linear-gradient(160deg, #060e24 0%, #0b1a3d 50%, #0f2258 100%);
 }
 
-/* Botón de tema en páginas de auth: fijo arriba a la derecha */
+/* Grilla de puntos */
+.page-auth::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 36px 36px;
+    pointer-events: none;
+}
+
+/* Franja diagonal de brillo */
+.page-auth::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -8%;
+    width: 50%;
+    height: 140%;
+    background: linear-gradient(to bottom, rgba(26,79,214,0.08) 0%, transparent 100%);
+    transform: rotate(-12deg);
+    pointer-events: none;
+}
+
 .page-auth .theme-toggle {
     position: fixed;
     top: 16px;
@@ -201,50 +212,85 @@ h1, h2, h3 {
 .auth-container {
     width: 100%;
     max-width: 440px;
-    animation: fadeIn 0.4s ease;
+    animation: fadeIn 0.45s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .auth-card {
     background: var(--bg-surface);
-    border-radius: var(--radio);
-    padding: 40px 32px;
+    border-radius: 18px;
+    padding: 42px 36px;
     box-shadow: var(--sombra-lg);
+    border: 1px solid rgba(200,216,255,0.12);
     transition: background var(--transicion);
 }
 
-.auth-card--wide {
-    max-width: 720px;
+[data-theme="dark"] .auth-card {
+    border-color: rgba(255,255,255,0.04);
 }
 
-.auth-container:has(.auth-card--wide) {
-    max-width: 720px;
-}
+.auth-card--wide { max-width: 720px; }
+
+.auth-container:has(.auth-card--wide) { max-width: 720px; }
 
 .auth-header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 34px;
 }
 
 .auth-header .logo {
     justify-content: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Logo text block: ACME sobre BANCO */
+.auth-header .logo-brand-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    gap: 2px;
+}
+
+.auth-header .logo-brand-main {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    letter-spacing: 4px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+}
+
+.auth-header .logo-brand-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.65rem;
+    letter-spacing: 5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
 }
 
 .auth-subtitle {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+    margin-top: 6px;
 }
 
 .auth-links {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-    font-size: 0.88rem;
+    font-size: 0.87rem;
 }
 
 .auth-links a {
     color: var(--azul-primario);
     text-decoration: none;
+    font-weight: 500;
     transition: color var(--transicion);
 }
 
@@ -256,16 +302,15 @@ h1, h2, h3 {
 /* ==============================
    FORMULARIOS
    ============================== */
-.form-group {
-    margin-bottom: 18px;
-}
+.form-group { margin-bottom: 18px; }
 
 .form-group label {
     display: block;
-    font-size: 0.88rem;
-    font-weight: 500;
+    font-size: 0.83rem;
+    font-weight: 600;
     color: var(--text-label);
     margin-bottom: 6px;
+    letter-spacing: 0.15px;
 }
 
 .form-group input,
@@ -274,7 +319,7 @@ h1, h2, h3 {
     padding: 11px 14px;
     border: 1.5px solid var(--border-input);
     border-radius: var(--radio-sm);
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     font-family: 'DM Sans', sans-serif;
     color: var(--text-primary);
     background: var(--bg-input);
@@ -289,20 +334,12 @@ h1, h2, h3 {
 }
 
 .form-group input.input-error,
-.form-group select.input-error {
-    border-color: var(--rojo);
-}
+.form-group select.input-error { border-color: var(--rojo); }
 
-/* Wrapper del campo de contraseña */
-.password-wrapper {
-    position: relative;
-}
+.password-wrapper { position: relative; }
 
-.password-wrapper input {
-    padding-right: 44px;
-}
+.password-wrapper input { padding-right: 44px; }
 
-/* Botón ojo para mostrar/ocultar contraseña */
 .toggle-pass {
     position: absolute;
     right: 10px;
@@ -319,20 +356,16 @@ h1, h2, h3 {
     transition: color var(--transicion);
 }
 
-.toggle-pass:hover {
-    color: var(--text-label);
-}
+.toggle-pass:hover { color: var(--text-label); }
 
-/* Mensaje de error debajo del campo */
 .error-msg {
     display: block;
     color: var(--rojo);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     margin-top: 4px;
     min-height: 18px;
 }
 
-/* Grid de dos columnas para formularios anchos */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -351,30 +384,31 @@ h1, h2, h3 {
     border: none;
     border-radius: var(--radio-sm);
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.93rem;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--transicion);
     text-decoration: none;
+    letter-spacing: 0.1px;
 }
 
-/* Botón azul principal */
 .btn-primary {
-    background: var(--azul-primario);
+    background: linear-gradient(135deg, #1a4fd6 0%, #1240b4 100%);
     color: #ffffff;
     width: 100%;
+    box-shadow: 0 4px 14px rgba(26,79,214,0.3);
 }
 
 .btn-primary:hover {
-    background: var(--azul-hover);
+    background: linear-gradient(135deg, #1648ca 0%, #1039a4 100%);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(26,86,219,0.3);
+    box-shadow: 0 6px 20px rgba(26,79,214,0.4);
 }
 
-/* Botón secundario (gris) */
 .btn-secondary {
     background: var(--bg-surface-2);
     color: var(--text-label);
+    border: 1.5px solid var(--border-color);
 }
 
 .btn-secondary:hover {
@@ -382,26 +416,22 @@ h1, h2, h3 {
     color: var(--text-primary);
 }
 
-/* Botón con solo borde */
 .btn-outline {
     background: transparent;
     color: var(--azul-primario);
     border: 1.5px solid var(--azul-primario);
     padding: 8px 16px;
-    font-size: 0.88rem;
+    font-size: 0.87rem;
 }
 
-.btn-outline:hover {
-    background: var(--azul-suave);
-}
+.btn-outline:hover { background: var(--azul-suave); }
 
-/* Botón de volver (con flecha) */
 .btn-volver {
     background: var(--bg-surface-2);
     color: var(--text-label);
     border: 1.5px solid var(--border-color);
     padding: 9px 18px;
-    font-size: 0.88rem;
+    font-size: 0.87rem;
     width: auto;
 }
 
@@ -410,16 +440,13 @@ h1, h2, h3 {
     color: var(--text-primary);
 }
 
-/* Grupo de botones lado a lado */
 .btn-group {
     display: flex;
     gap: 12px;
     margin-top: 8px;
 }
 
-.btn-group .btn {
-    flex: 1;
-}
+.btn-group .btn { flex: 1; }
 
 /* ==============================
    ALERTAS / MENSAJES
@@ -427,7 +454,7 @@ h1, h2, h3 {
 .alert {
     padding: 12px 16px;
     border-radius: var(--radio-sm);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     margin-top: 16px;
     text-align: center;
 }
@@ -444,7 +471,6 @@ h1, h2, h3 {
     border: 1px solid rgba(22,163,74,0.2);
 }
 
-/* Texto informativo gris */
 .info-text {
     color: var(--text-muted);
     font-size: 0.9rem;
@@ -453,15 +479,13 @@ h1, h2, h3 {
 }
 
 /* ==============================
-   RESUMEN DE REGISTRO EXITOSO
-   (registro.html - después de crear cuenta)
+   RESUMEN REGISTRO EXITOSO
    ============================== */
 .resumen-card {
     text-align: center;
     padding: 20px 0;
 }
 
-/* Icono de check grande */
 .resumen-icon {
     width: 64px;
     height: 64px;
@@ -494,9 +518,7 @@ h1, h2, h3 {
     font-size: 0.9rem;
 }
 
-.resumen-datos p:last-child {
-    border-bottom: none;
-}
+.resumen-datos p:last-child { border-bottom: none; }
 
 /* ==============================
    LAYOUT DEL DASHBOARD
@@ -508,7 +530,7 @@ h1, h2, h3 {
     transition: background var(--transicion);
 }
 
-/* --- Sidebar (menú lateral) --- */
+/* --- Sidebar --- */
 .sidebar {
     width: 260px;
     background: var(--bg-surface);
@@ -516,29 +538,25 @@ h1, h2, h3 {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    top: 0; left: 0; bottom: 0;
     z-index: 100;
     transition: transform 0.3s ease, background var(--transicion), border-color var(--transicion);
 }
 
 .sidebar-header {
-    padding: 20px 20px 16px;
+    padding: 22px 20px 18px;
     border-bottom: 1px solid var(--border-color);
 }
 
-/* Lista de botones de navegación */
 .sidebar-nav {
     flex: 1;
-    padding: 12px;
+    padding: 12px 10px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
     overflow-y: auto;
 }
 
-/* Cada ítem del menú */
 .nav-item {
     display: flex;
     align-items: center;
@@ -549,7 +567,7 @@ h1, h2, h3 {
     border-radius: var(--radio-sm);
     background: transparent;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--text-label);
     cursor: pointer;
@@ -562,25 +580,19 @@ h1, h2, h3 {
     color: var(--text-primary);
 }
 
-/* Ítem activo (sección actual) */
 .nav-item.active {
     background: var(--bg-active);
     color: var(--bg-active-text);
     font-weight: 600;
 }
 
-/* Ítem de cerrar sesión (rojo) */
-.nav-item--danger {
-    color: var(--rojo);
-    margin-top: auto;
-}
+.nav-item--danger { color: var(--rojo); margin-top: auto; }
 
 .nav-item--danger:hover {
     background: var(--rojo-suave);
     color: var(--rojo);
 }
 
-/* Contenedor del ícono en el nav */
 .nav-icon {
     width: 22px;
     display: flex;
@@ -589,7 +601,6 @@ h1, h2, h3 {
     flex-shrink: 0;
 }
 
-/* Pie del sidebar: nombre del usuario + exportar/importar */
 .sidebar-footer {
     padding: 16px 20px;
     border-top: 1px solid var(--border-color);
@@ -605,11 +616,7 @@ h1, h2, h3 {
     text-overflow: ellipsis;
 }
 
-/* Botones de exportar/importar en el sidebar */
-.sidebar-data-actions {
-    display: flex;
-    gap: 8px;
-}
+.sidebar-data-actions { display: flex; gap: 8px; }
 
 .btn-data-action {
     flex: 1;
@@ -638,14 +645,12 @@ h1, h2, h3 {
 }
 
 /* ==============================
-   BOTÓN MENÚ MÓVIL (hamburguesa)
-   Solo visible en pantallas pequeñas
+   BOTÓN MENÚ MÓVIL
    ============================== */
 .menu-toggle {
     display: none;
     position: fixed;
-    top: 14px;
-    left: 14px;
+    top: 14px; left: 14px;
     z-index: 200;
     background: var(--bg-surface);
     border: 1px solid var(--border-color);
@@ -659,7 +664,7 @@ h1, h2, h3 {
 }
 
 /* ==============================
-   CONTENIDO PRINCIPAL DEL DASHBOARD
+   CONTENIDO PRINCIPAL
    ============================== */
 .main-content {
     flex: 1;
@@ -668,12 +673,11 @@ h1, h2, h3 {
     max-width: 960px;
 }
 
-/* Header: título + fecha + botón tema */
 .dash-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
 }
 
 .dash-header-left {
@@ -684,174 +688,217 @@ h1, h2, h3 {
 
 .dash-header h1 {
     font-size: 1.6rem;
+    letter-spacing: -0.3px;
 }
 
 .dash-fecha {
     color: var(--text-muted);
-    font-size: 0.88rem;
+    font-size: 0.87rem;
 }
 
 /* ==============================
-   TARJETA DE CUENTA (Estilo AmEx)
-   Diseñada para verse como una tarjeta bancaria real
+   TARJETA DE CUENTA — ACME BANCO
+   Rediseñada con imagen de marca
    ============================== */
 .cuenta-card {
-    /* Gradiente oscuro tipo American Express */
-    background: linear-gradient(140deg, #0a1628 0%, #1c3a6e 55%, #0d2451 100%);
-    border-radius: 20px;
-    padding: 28px 32px;
+    background: linear-gradient(145deg, #091426 0%, #122056 38%, #0e1b4d 68%, #091426 100%);
+    border-radius: 22px;
+    padding: 26px 30px 24px;
     color: #ffffff;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 4px 20px rgba(26,86,219,0.15);
+    box-shadow: var(--sombra-card);
     position: relative;
     overflow: hidden;
     max-width: 480px;
+    aspect-ratio: 1.586 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-/* Círculo decorativo arriba a la derecha */
+/* Etiqueta "Credit / Debit" */
 .cuenta-card::before {
-    content: '';
+    content: 'Credit / Debit';
     position: absolute;
-    top: -100px;
-    right: -100px;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+    top: 20px;
+    right: 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.38);
+    text-transform: uppercase;
     pointer-events: none;
+    z-index: 2;
 }
 
-/* Círculo decorativo abajo a la izquierda */
+/* Halo de luz superior */
 .cuenta-card::after {
     content: '';
     position: absolute;
-    bottom: -80px;
-    left: -60px;
-    width: 220px;
-    height: 220px;
+    top: -120px;
+    left: -80px;
+    width: 340px;
+    height: 340px;
     border-radius: 50%;
-    background: rgba(26, 86, 219, 0.15);
+    background: radial-gradient(circle, rgba(74,127,232,0.2) 0%, transparent 65%);
     pointer-events: none;
 }
 
-/* Header de la tarjeta: logo del banco + estado */
+/* Líneas holográficas decorativas */
+.cuenta-card__bg-lines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 28px,
+        rgba(255,255,255,0.016) 28px,
+        rgba(255,255,255,0.016) 29px
+    );
+    border-radius: 22px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Header de la tarjeta */
 .cuenta-card__header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
+    align-items: flex-start;
     position: relative;
     z-index: 1;
 }
 
-/* Logo del banco dentro de la tarjeta */
 .cuenta-bank-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 9px;
+}
+
+/* Ícono A dentro de la tarjeta */
+.cuenta-bank-logo .logo-icon--sm {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: none;
+}
+
+/* Bloque ACME / BANCO en la tarjeta */
+.cuenta-bank-name-block {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
 }
 
 .cuenta-bank-name {
     font-family: 'Outfit', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    color: rgba(255,255,255,0.9);
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    color: #ffffff;
     text-transform: uppercase;
 }
 
-/* Indicador "Activa" con punto verde */
+.cuenta-bank-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 4.5px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+}
+
 .cuenta-estado {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.85);
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 2px;
 }
 
 .estado-dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: #4ade80;
-    box-shadow: 0 0 0 3px rgba(74,222,128,0.25);
+    box-shadow: 0 0 0 3px rgba(74,222,128,0.22);
     flex-shrink: 0;
 }
 
-/* Cuerpo de la tarjeta: chip + número + saldo */
+/* Cuerpo de la tarjeta */
 .cuenta-card__body {
     position: relative;
     z-index: 1;
-    margin-bottom: 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4px 0;
 }
 
-/* Chip EMV dorado (el cuadradito de las tarjetas) */
+/* Chip EMV dorado */
 .cuenta-chip {
-    width: 44px;
-    height: 34px;
-    background: linear-gradient(135deg, #c8a84b 0%, #e8cc6d 40%, #a0832e 100%);
-    border-radius: 6px;
-    margin-bottom: 18px;
+    width: 40px;
+    height: 30px;
+    background: linear-gradient(135deg, #c8a84b 0%, #e8cc6d 42%, #a0832e 100%);
+    border-radius: 5px;
+    margin-bottom: 14px;
     position: relative;
     overflow: hidden;
 }
 
-/* Líneas horizontales del chip */
 .cuenta-chip::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
+    top: 50%; left: 0; right: 0;
     height: 1px;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.18);
     transform: translateY(-50%);
 }
 
-/* Línea vertical del chip */
 .cuenta-chip::after {
     content: '';
     position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
+    left: 50%; top: 0; bottom: 0;
     width: 1px;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.18);
     transform: translateX(-50%);
 }
 
 /* Número de cuenta */
 .cuenta-numero {
     font-family: 'Outfit', monospace;
-    font-size: 1.3rem;
-    letter-spacing: 4px;
-    margin-bottom: 18px;
-    opacity: 0.95;
+    font-size: 1.18rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    opacity: 0.94;
     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    word-spacing: 4px;
 }
 
 .cuenta-saldo-label {
-    font-size: 0.72rem;
+    font-size: 0.66rem;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
-    opacity: 0.6;
-    margin-bottom: 4px;
+    letter-spacing: 1.5px;
+    opacity: 0.45;
+    margin-bottom: 3px;
 }
 
-/* Saldo grande */
 .cuenta-saldo {
     font-family: 'Outfit', sans-serif;
-    font-size: 2rem;
+    font-size: 1.9rem;
     font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.22);
+    letter-spacing: -0.5px;
 }
 
-/* Pie de la tarjeta: titular + fecha + tipo */
+/* Pie de la tarjeta */
 .cuenta-card__footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding-top: 18px;
-    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.1);
     position: relative;
     z-index: 1;
     gap: 12px;
@@ -864,29 +911,32 @@ h1, h2, h3 {
 }
 
 .cuenta-footer-label {
-    font-size: 0.68rem;
+    font-size: 0.6rem;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
-    opacity: 0.5;
+    letter-spacing: 1px;
+    opacity: 0.42;
 }
 
 .cuenta-card__footer p,
 .cuenta-card__footer span,
 .cuenta-card__footer strong {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     opacity: 0.9;
 }
 
-/* Badge "Ahorros" en la tarjeta */
+/* Badge tipo de cuenta — estilizado como logo de red de pago */
 .cuenta-badge {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 5px 12px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 4px 12px;
     border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.3px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     white-space: nowrap;
+    color: rgba(255,255,255,0.75);
 }
 
 /* ==============================
@@ -899,9 +949,7 @@ h1, h2, h3 {
     margin-bottom: 20px;
 }
 
-.seccion-header h2 {
-    font-size: 1.2rem;
-}
+.seccion-header h2 { font-size: 1.2rem; }
 
 /* --- Tabla de transacciones --- */
 .tabla-container {
@@ -921,7 +969,7 @@ h1, h2, h3 {
     background: var(--bg-surface-2);
     padding: 12px 16px;
     text-align: left;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 600;
     color: var(--text-label);
     text-transform: uppercase;
@@ -936,21 +984,13 @@ h1, h2, h3 {
     color: var(--text-primary);
 }
 
-.tabla tr:hover td {
-    background: var(--bg-surface-2);
-}
+.tabla tr:hover td { background: var(--bg-surface-2); }
 
-.valor-positivo {
-    color: var(--verde);
-    font-weight: 600;
-}
+.valor-positivo { color: var(--verde); font-weight: 600; }
 
-.valor-negativo {
-    color: var(--rojo);
-    font-weight: 600;
-}
+.valor-negativo { color: var(--rojo); font-weight: 600; }
 
-/* --- Formulario de operación (consignar, retirar, etc.) --- */
+/* --- Formulario de operación --- */
 .form-operacion {
     background: var(--bg-surface);
     border-radius: var(--radio);
@@ -960,12 +1000,12 @@ h1, h2, h3 {
     transition: background var(--transicion);
 }
 
-/* Resumen de datos de la cuenta arriba del formulario */
 .info-cuenta {
     background: var(--bg-surface-2);
     border-radius: var(--radio-sm);
     padding: 16px;
     margin-bottom: 20px;
+    border: 1px solid var(--border-color);
     transition: background var(--transicion);
 }
 
@@ -986,7 +1026,6 @@ h1, h2, h3 {
     transition: background var(--transicion);
 }
 
-/* Título en verde del resumen */
 .success-title {
     color: var(--verde);
     margin-bottom: 16px;
@@ -1001,13 +1040,9 @@ h1, h2, h3 {
     color: var(--text-primary);
 }
 
-.resumen-transaccion p:last-child {
-    border-bottom: none;
-}
+.resumen-transaccion p:last-child { border-bottom: none; }
 
-.resumen-transaccion .btn-outline {
-    margin-top: 16px;
-}
+.resumen-transaccion .btn-outline { margin-top: 16px; }
 
 /* ==============================
    CERTIFICADO BANCARIO
@@ -1018,7 +1053,6 @@ h1, h2, h3 {
     gap: 16px;
 }
 
-/* Fila de botones debajo del certificado */
 .certificado-actions {
     display: flex;
     align-items: center;
@@ -1042,10 +1076,7 @@ h1, h2, h3 {
     margin-bottom: 32px;
 }
 
-.certificado__header .logo {
-    justify-content: center;
-    margin-bottom: 4px;
-}
+.certificado__header .logo { justify-content: center; margin-bottom: 4px; }
 
 .certificado__header p {
     font-size: 0.85rem;
@@ -1104,7 +1135,7 @@ h1, h2, h3 {
     height: 1px;
     background: var(--text-primary);
     margin: 0 auto 8px;
-    opacity: 0.4;
+    opacity: 0.35;
 }
 
 .certificado__footer p {
@@ -1116,123 +1147,46 @@ h1, h2, h3 {
    ANIMACIONES
    ============================== */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-.seccion {
-    animation: fadeIn 0.3s ease;
-}
+.seccion { animation: fadeIn 0.3s ease; }
 
 /* ==============================
-   RESPONSIVE (pantallas pequeñas)
+   RESPONSIVE
    ============================== */
 @media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .auth-card {
-        padding: 28px 20px;
-    }
-
-    /* En móvil el sidebar se oculta */
-    .sidebar {
-        transform: translateX(-100%);
-    }
-
-    .sidebar.open {
-        transform: translateX(0);
-    }
-
-    .menu-toggle {
-        display: flex;
-    }
-
-    .main-content {
-        margin-left: 0;
-        padding: 20px 16px;
-        padding-top: 64px;
-    }
-
-    .dash-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-
-    .dash-header h1 {
-        font-size: 1.3rem;
-    }
-
-    .cuenta-card {
-        padding: 20px 22px;
-    }
-
-    .cuenta-saldo {
-        font-size: 1.6rem;
-    }
-
-    .cuenta-card__footer {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .certificado {
-        padding: 24px 16px;
-    }
-
-    .seccion-header {
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
-    }
-
-    .certificado-actions {
-        flex-wrap: wrap;
-    }
+    .form-grid { grid-template-columns: 1fr; }
+    .auth-card { padding: 30px 22px; }
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .menu-toggle { display: flex; }
+    .main-content { margin-left: 0; padding: 20px 16px; padding-top: 64px; }
+    .dash-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .dash-header h1 { font-size: 1.3rem; }
+    .cuenta-card { padding: 20px 22px; aspect-ratio: auto; }
+    .cuenta-saldo { font-size: 1.6rem; }
+    .cuenta-card__footer { flex-wrap: wrap; gap: 10px; }
+    .certificado { padding: 24px 16px; }
+    .seccion-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .certificado-actions { flex-wrap: wrap; }
 }
 
 @media (max-width: 480px) {
-    .auth-links {
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-    }
-
-    .btn-group {
-        flex-direction: column;
-    }
+    .auth-links { flex-direction: column; gap: 8px; text-align: center; }
+    .btn-group { flex-direction: column; }
 }
 
 /* ==============================
-   ESTILOS DE IMPRESIÓN
-   Cuando el usuario imprime, ocultamos
-   lo que no debe aparecer en el papel
+   IMPRESIÓN
    ============================== */
 @media print {
-    .sidebar,
-    .menu-toggle,
-    .btn,
-    .nav-item,
-    .dash-header,
-    .certificado-actions,
-    .theme-toggle {
+    .sidebar, .menu-toggle, .btn, .nav-item,
+    .dash-header, .certificado-actions, .theme-toggle {
         display: none !important;
     }
-
-    .main-content {
-        margin: 0;
-        padding: 0;
-    }
-
-    .seccion {
-        display: block !important;
-        box-shadow: none;
-    }
-
-    .certificado {
-        border: 1px solid #ccc;
-        box-shadow: none;
-    }
+    .main-content { margin: 0; padding: 0; }
+    .seccion { display: block !important; box-shadow: none; }
+    .certificado { border: 1px solid #ccc; box-shadow: none; }
 }
