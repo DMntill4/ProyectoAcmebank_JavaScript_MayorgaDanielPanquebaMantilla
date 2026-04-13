@@ -1,28 +1,18 @@
 // ==============================
 // LÓGICA DE RECUPERACIÓN DE CONTRASEÑA
-//
-// Este flujo tiene 2 pasos:
-//   Paso 1: El usuario ingresa tipo ID + número + email
-//           Si los datos coinciden con una cuenta, avanza al paso 2
-//   Paso 2: El usuario escribe su nueva contraseña
-//           Si es válida, se guarda y se redirige al login
 // ==============================
 
-// Esta variable guarda al usuario encontrado en el paso 1
-// para usarla luego en el paso 2
-// La declaramos aquí (fuera de las funciones) para que ambas funciones
-// puedan acceder a ella
+// Usuario verificado entre pasos
 let usuarioVerificado = null;
 
+
 // ==============================
-// PASO 1: Verificar identidad
-// Se llama cuando el usuario hace clic en "Verificar"
+// PASO 1: VERIFICAR IDENTIDAD
 // ==============================
+
 function verificarIdentidad() {
-    // 1. Limpiar mensajes anteriores
     document.getElementById("mensajeVerificar").style.display = "none";
 
-    // 2. Validar que todos los campos estén llenos
     let esValido = true;
 
     if (!validarCampo("recTipoId", "errRecTipoId", "Seleccione un tipo de identificación")) esValido = false;
@@ -31,61 +21,53 @@ function verificarIdentidad() {
 
     if (!esValido) return;
 
-    // 3. Obtener los valores ingresados
     const tipoId = document.getElementById("recTipoId").value;
     const numId = document.getElementById("recNumId").value.trim();
     const email = document.getElementById("recEmail").value.trim().toLowerCase();
-    // .toLowerCase() para que "Correo@Email.com" y "correo@email.com" sean iguales
 
-    // 4. Validar formato del email
+    // Validar email
     if (!validarEmail(email)) {
         document.getElementById("errRecEmail").textContent = "Ingrese un correo electrónico válido";
         document.getElementById("recEmail").classList.add("input-error");
         return;
     }
 
-    // 5. Buscar el usuario en localStorage
     const usuarios = obtenerUsuarios();
 
-    // find() busca el PRIMER usuario que cumpla TODAS las condiciones
-    const usuarioEncontrado = usuarios.find(function(u) {
-        return (
-            u.tipoId === tipoId &&
-            u.numId === numId &&
-            u.email.toLowerCase() === email
-        );
-    });
+    const usuarioEncontrado = usuarios.find((u) =>
+        u.tipoId === tipoId &&
+        u.numId === numId &&
+        u.email.toLowerCase() === email
+    );
 
-    // 6. Si no se encontró ningún usuario con esos datos
     if (!usuarioEncontrado) {
         mostrarAlerta(
             "mensajeVerificar",
-            "No encontramos una cuenta con esa información. Verifique el tipo de ID, número y correo.",
+            "No encontramos una cuenta con esa información.",
             "error"
         );
         return;
     }
 
-    // 7. Guardamos el usuario encontrado para usarlo en el paso 2
+    // Guardar usuario
     usuarioVerificado = usuarioEncontrado;
 
-    // 8. Ocultamos el formulario del paso 1 y mostramos el paso 2
+    // Cambiar vista
     document.getElementById("formVerificar").style.display = "none";
     document.getElementById("formNuevaPass").style.display = "block";
 }
 
+
 // ==============================
-// PASO 2: Cambiar la contraseña
-// Se llama cuando el usuario hace clic en "Cambiar Contraseña"
+// PASO 2: CAMBIAR CONTRASEÑA
 // ==============================
+
 function cambiarContrasena() {
-    // Seguridad: si por alguna razón no hay usuario verificado, redirigir
     if (!usuarioVerificado) {
         window.location.href = "recuperar.html";
         return;
     }
 
-    // 1. Validar que los campos estén llenos
     let esValido = true;
 
     if (!validarCampo("nuevaPass", "errNuevaPass", "Ingrese su nueva contraseña")) esValido = false;
@@ -93,74 +75,102 @@ function cambiarContrasena() {
 
     if (!esValido) return;
 
-    // 2. Obtener los valores
     const nuevaPass = document.getElementById("nuevaPass").value;
     const confirmarPass = document.getElementById("confirmarNuevaPass").value;
 
-    // 3. Validar que tenga mínimo 8 caracteres
     if (!validarFormatoPassword(nuevaPass)) {
-        document.getElementById("errNuevaPass").textContent = "La contraseña debe tener mínimo 8 caracteres";
+        document.getElementById("errNuevaPass").textContent = "Mínimo 8 caracteres";
         document.getElementById("nuevaPass").classList.add("input-error");
         return;
     }
 
-    // 4. Validar que las dos contraseñas sean iguales
     if (nuevaPass !== confirmarPass) {
         document.getElementById("errConfirmarNuevaPass").textContent = "Las contraseñas no coinciden";
         document.getElementById("confirmarNuevaPass").classList.add("input-error");
         return;
     }
 
-    // 5. Buscar y actualizar la contraseña en localStorage
     const usuarios = obtenerUsuarios();
 
-    // findIndex() retorna la POSICIÓN del usuario en el array (-1 si no existe)
-    const indice = usuarios.findIndex(function(u) {
-        return u.tipoId === usuarioVerificado.tipoId && u.numId === usuarioVerificado.numId;
-    });
+    const indice = usuarios.findIndex((u) =>
+        u.tipoId === usuarioVerificado.tipoId &&
+        u.numId === usuarioVerificado.numId
+    );
 
-    // Si por algún motivo el usuario ya no existe (caso extremo)
     if (indice === -1) {
-        mostrarAlerta("mensajeCambio", "Ocurrió un error inesperado. Intente nuevamente.", "error");
+        mostrarAlerta("mensajeCambio", "Error inesperado", "error");
         return;
     }
 
-    // 6. Actualizamos la contraseña
+    // Actualizar contraseña
     usuarios[indice].password = nuevaPass;
-    guardarUsuarios(usuarios); // Guardamos los cambios en localStorage
+    guardarUsuarios(usuarios);
 
-    // 7. Mostramos mensaje de éxito
     mostrarAlerta(
         "mensajeCambio",
-        "Contraseña actualizada correctamente. Redirigiendo al inicio de sesión...",
+        "Contraseña actualizada correctamente. Redirigiendo...",
         "success"
     );
 
-    // 8. Limpiamos el usuario verificado (buena práctica de seguridad)
     usuarioVerificado = null;
 
-    // 9. Redirigimos al login después de 2.5 segundos
-    // setTimeout ejecuta una función después de esperar el tiempo indicado (en milisegundos)
-    setTimeout(function() {
+    setTimeout(() => {
         window.location.href = "index.html";
     }, 2500);
 }
 
+
 // ==============================
 // VALIDACIÓN EN TIEMPO REAL
-// Limpiamos los errores mientras el usuario escribe
 // ==============================
-document.addEventListener("DOMContentLoaded", function() {
-    const campos = document.querySelectorAll("#formVerificar input, #formVerificar select");
 
-    campos.forEach(function(campo) {
-        campo.addEventListener("input", function() {
-            // Limpiar el error de este campo cuando el usuario empiece a corregirlo
-            const errorSpan = this.parentElement.querySelector(".error-msg");
-            if (errorSpan) {
-                errorSpan.textContent = "";
+document.addEventListener("DOMContentLoaded", function () {
+
+    // CAMPOS DEL PASO 1
+    const camposVerificar = document.querySelectorAll("#formVerificar input, #formVerificar select");
+
+    camposVerificar.forEach((campo) => {
+        campo.addEventListener("input", function () {
+
+            // Validación tipo documento
+            if (this.id === "recNumId") {
+                const tipoId = document.getElementById("recTipoId").value;
+
+                if (tipoId !== "PP") {
+                    this.value = this.value.replace(/\D/g, "");
+                }
+                // PP → permite letras y números
             }
+
+            // Limpiar errores
+            const errorSpan = this.parentElement.querySelector(".error-msg");
+            if (errorSpan) errorSpan.textContent = "";
+
             this.classList.remove("input-error");
         });
     });
+
+
+    // LIMPIAR CUANDO CAMBIA TIPO DE DOCUMENTO
+    document.getElementById("recTipoId").addEventListener("change", function () {
+        const input = document.getElementById("recNumId");
+
+        if (this.value !== "PP") {
+            input.value = input.value.replace(/\D/g, "");
+        }
+    });
+
+
+    // CAMPOS DEL PASO 2
+    const camposPass = document.querySelectorAll("#formNuevaPass input");
+
+    camposPass.forEach((campo) => {
+        campo.addEventListener("input", function () {
+            const errorSpan = this.parentElement.querySelector(".error-msg");
+            if (errorSpan) errorSpan.textContent = "";
+
+            this.classList.remove("input-error");
+        });
+    });
+
 });

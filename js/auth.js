@@ -2,46 +2,41 @@
 // LÓGICA DE INICIO DE SESIÓN
 // ==============================
 
-// Esta función se ejecuta cuando el usuario hace clic en "Iniciar Sesión"
 function iniciarSesion() {
-    // 1. Limpiar mensajes de error previos
-    document.getElementById("mensajeError").style.display = "none";
+    // 1. Limpiar mensaje de error general
+    const mensajeError = document.getElementById("mensajeError");
+    mensajeError.style.display = "none";
 
-    // 2. Validar que todos los campos estén llenos
+    // 2. Validar campos obligatorios
     let esValido = true;
 
-    // validarCampo retorna false si el campo está vacío
     if (!validarCampo("tipoId", "errorTipoId", "Seleccione un tipo")) esValido = false;
     if (!validarCampo("numId", "errorNumId", "Ingrese su número")) esValido = false;
     if (!validarCampo("password", "errorPassword", "Ingrese su contraseña")) esValido = false;
 
-    // Si algún campo falló, no continuar
     if (!esValido) return;
 
-    // 3. Obtener los valores de los campos
+    // 3. Obtener valores
     const tipoId = document.getElementById("tipoId").value;
     const numId = document.getElementById("numId").value.trim();
     const password = document.getElementById("password").value;
 
-    // 4. Buscar el usuario en localStorage
+    // 4. Obtener usuarios desde localStorage
     const usuarios = obtenerUsuarios();
 
-    // find() busca el primer usuario que coincida con TODOS los criterios
+    // 5. Buscar usuario
     const usuario = usuarios.find(
         (u) => u.tipoId === tipoId && u.numId === numId && u.password === password
     );
 
-    // 5. Verificar resultado
+    // 6. Validar resultado
     if (usuario) {
-        // ¡Credenciales correctas!
-        // Guardamos el ID del usuario en sessionStorage para mantener la sesión
-        // sessionStorage se borra cuando se cierra el navegador
+        // Guardar sesión
         sessionStorage.setItem("acmebank_sesion", usuario.numId);
 
-        // Redirigir al dashboard
+        // Redirigir
         window.location.href = "dashboard.html";
     } else {
-        // Credenciales incorrectas
         mostrarAlerta(
             "mensajeError",
             "No se pudo validar su identidad. Verifique sus datos e intente nuevamente.",
@@ -50,16 +45,27 @@ function iniciarSesion() {
     }
 }
 
-// --- VALIDACIÓN EN TIEMPO REAL ---
-// Escuchamos el evento "input" en cada campo para validar mientras escribe
+
+// ==============================
+// VALIDACIÓN EN TIEMPO REAL
+// ==============================
+
+// NUMERO DE IDENTIFICACIÓN
 document.getElementById("numId").addEventListener("input", function () {
-    // Si el usuario empieza a escribir, limpiar el error
+    const tipoId = document.getElementById("tipoId").value;
+
+    // Solo números si NO es pasaporte
+    if (tipoId !== "PP") {
+        this.value = this.value.replace(/\D/g, "");
+    }
+
     if (this.value.trim() !== "") {
         document.getElementById("errorNumId").textContent = "";
         this.classList.remove("input-error");
     }
 });
 
+// CONTRASEÑA
 document.getElementById("password").addEventListener("input", function () {
     if (this.value !== "") {
         document.getElementById("errorPassword").textContent = "";
@@ -67,7 +73,27 @@ document.getElementById("password").addEventListener("input", function () {
     }
 });
 
-// Permitir enviar con Enter
+
+// ==============================
+// CAMBIO DE TIPO DE DOCUMENTO
+// ==============================
+
+document.getElementById("tipoId").addEventListener("change", function () {
+    const input = document.getElementById("numId");
+
+    // Si cambia a un tipo que NO es pasaporte → limpiar letras
+    if (this.value !== "PP") {
+        input.value = input.value.replace(/\D/g, "");
+    }
+});
+
+
+// ==============================
+// ENVIAR CON ENTER
+// ==============================
+
 document.getElementById("password").addEventListener("keydown", function (e) {
-    if (e.key === "Enter") iniciarSesion();
+    if (e.key === "Enter") {
+        iniciarSesion();
+    }
 });

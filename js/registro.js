@@ -20,6 +20,31 @@ function registrarUsuario() {
     if (!validarCampo("regPasswordConfirm", "errRegPasswordConfirm", "Campo obligatorio")) esValido = false;
 
     // 2. Validaciones específicas
+
+    const regexSoloNumeros = /^[0-9]+$/;
+    const tipoIdParaValidar = document.getElementById("regTipoId").value;
+
+    const regNumIdValue = document.getElementById("regNumId").value;
+    if (regNumIdValue && !regexSoloNumeros.test(regNumIdValue)) {
+        document.getElementById("errRegNumId").textContent = "Solo se permiten números";
+        esValido = false;
+    }
+
+    if (regNumIdValue) {
+    // Solo marcamos error si NO es Pasaporte y detectamos letras
+    if (tipoIdParaValidar !== "PP" && !regexSoloNumeros.test(regNumIdValue)) {
+        document.getElementById("errRegNumId").textContent = "Solo se permiten números para este tipo de ID";
+        esValido = false;
+    }
+}
+
+
+    const regTelefonoValue = document.getElementById("regTelefono").value;
+    if (regTelefonoValue && !regexSoloNumeros.test(regTelefonoValue)) {
+        document.getElementById("errRegTelefono").textContent = "Solo se permiten números";
+        esValido = false;
+    }
+
     const email = document.getElementById("regEmail").value.trim();
     if (email && !validarEmail(email)) {
         document.getElementById("errRegEmail").textContent = "Email no válido";
@@ -94,17 +119,47 @@ function registrarUsuario() {
     document.getElementById("resFechaCreacion").textContent = formatearFecha(nuevoUsuario.fechaCreacion);
 }
 
+
+
+
 // --- VALIDACIÓN EN TIEMPO REAL ---
 // Recorremos todos los inputs del formulario y agregamos listeners
 const camposRegistro = document.querySelectorAll("#registroForm input, #registroForm select");
 camposRegistro.forEach((campo) => {
     campo.addEventListener("input", function () {
-        // Cuando el usuario escribe, limpiamos el error de ese campo
+
+        
+            if (this.id === "regNumId") {
+            const tipoIdActual = document.getElementById("regTipoId").value;
+
+            if (tipoIdActual !== "PP") {
+                // Solo números para cédula, TI, etc.
+                this.value = this.value.replace(/\D/g, "");
+            }
+            // Si es PP → permite letras y números
+        }
+
+        if (this.id === "regTelefono") {
+            // Teléfono SIEMPRE números
+            this.value = this.value.replace(/\D/g, "");
+        }
+
+        // Limpiar errores
         const errorSpan = this.parentElement.querySelector(".error-msg") ||
             this.nextElementSibling;
+
         if (errorSpan && errorSpan.classList.contains("error-msg")) {
             errorSpan.textContent = "";
         }
+
         this.classList.remove("input-error");
+
+        document.getElementById("regTipoId").addEventListener("change", function () {
+        const input = document.getElementById("regNumId");
+
+        if (this.value !== "PP") {
+            input.value = input.value.replace(/\D/g, "");
+        }
+        });
     });
 });
