@@ -1,0 +1,614 @@
+/* ==============================
+   LAYOUT DEL DASHBOARD
+   ============================== */
+.page-dashboard {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg-body);
+    transition: background var(--transicion);
+}
+
+/* === Sidebar === */
+.sidebar {
+    width: 260px;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 100;
+    transition: transform 0.3s ease, background var(--transicion), border-color var(--transicion);
+}
+
+.sidebar-header {
+    padding: 22px 20px 18px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow-y: auto;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 11px 14px;
+    border: none;
+    border-radius: var(--radio-sm);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-label);
+    cursor: pointer;
+    transition: all var(--transicion);
+    text-align: left;
+}
+
+.nav-item:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    background: var(--bg-active);
+    color: var(--bg-active-text);
+    font-weight: 600;
+}
+
+.nav-item--danger { color: var(--rojo); margin-top: auto; }
+
+.nav-item--danger:hover {
+    background: var(--rojo-suave);
+    color: var(--rojo);
+}
+
+.nav-icon {
+    width: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.sidebar-footer p {
+    margin-bottom: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-data-actions { display: flex; gap: 8px; }
+
+.btn-data-action {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 7px 10px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radio-sm);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transicion);
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-data-action:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    border-color: var(--azul-primario);
+}
+
+/* === Botón menú móvil === */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 14px; left: 14px;
+    z-index: 200;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radio-sm);
+    padding: 8px 12px;
+    cursor: pointer;
+    box-shadow: var(--sombra);
+    color: var(--text-primary);
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==============================
+   CONTENIDO PRINCIPAL
+   ============================== */
+.main-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 32px;
+    max-width: 960px;
+}
+
+.dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.dash-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.dash-header h1 {
+    font-size: 1.6rem;
+    letter-spacing: -0.3px;
+}
+
+.dash-fecha {
+    color: var(--text-muted);
+    font-size: 0.87rem;
+}
+
+/* ==============================
+   TARJETA DE CUENTA
+   ============================== */
+.cuenta-card {
+    background: linear-gradient(145deg, #091426 0%, #122056 38%, #0e1b4d 68%, #091426 100%);
+    border-radius: 22px;
+    padding: 26px 30px 24px;
+    color: #ffffff;
+    box-shadow: var(--sombra-card);
+    position: relative;
+    overflow: hidden;
+    max-width: 480px;
+    aspect-ratio: 1.586 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Etiqueta "Credit / Debit" */
+.cuenta-card::before {
+    content: 'Credit / Debit';
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.38);
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Halo de luz superior */
+.cuenta-card::after {
+    content: '';
+    position: absolute;
+    top: -120px;
+    left: -80px;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,127,232,0.2) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+/* Líneas holográficas decorativas */
+.cuenta-card__bg-lines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 28px,
+        rgba(255,255,255,0.016) 28px,
+        rgba(255,255,255,0.016) 29px
+    );
+    border-radius: 22px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cuenta-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+}
+
+.cuenta-bank-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.cuenta-bank-logo .logo-icon--sm {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: none;
+}
+
+.cuenta-bank-name-block {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.cuenta-bank-name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.cuenta-bank-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 4.5px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+}
+
+.cuenta-estado {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.65);
+    margin-top: 2px;
+}
+
+.estado-dot {
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 0 3px rgba(74,222,128,0.22);
+    flex-shrink: 0;
+}
+
+.cuenta-card__body {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4px 0;
+}
+
+/* Chip EMV dorado */
+.cuenta-chip {
+    width: 40px;
+    height: 30px;
+    background: linear-gradient(135deg, #c8a84b 0%, #e8cc6d 42%, #a0832e 100%);
+    border-radius: 5px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cuenta-chip::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px;
+    background: rgba(0,0,0,0.18);
+    transform: translateY(-50%);
+}
+
+.cuenta-chip::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(0,0,0,0.18);
+    transform: translateX(-50%);
+}
+
+.cuenta-numero {
+    font-family: 'Outfit', monospace;
+    font-size: 1.18rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    opacity: 0.94;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    word-spacing: 4px;
+}
+
+.cuenta-saldo-label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.45;
+    margin-bottom: 3px;
+}
+
+.cuenta-saldo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.22);
+    letter-spacing: -0.5px;
+}
+
+.cuenta-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 1;
+    gap: 12px;
+}
+
+.cuenta-footer-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.cuenta-footer-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.42;
+}
+
+.cuenta-card__footer p,
+.cuenta-card__footer span,
+.cuenta-card__footer strong {
+    font-size: 0.82rem;
+    opacity: 0.9;
+}
+
+.cuenta-badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: rgba(255,255,255,0.75);
+}
+
+/* ==============================
+   SECCIONES DEL DASHBOARD
+   ============================== */
+.seccion { animation: fadeIn 0.3s ease; }
+
+.seccion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.seccion-header h2 { font-size: 1.2rem; }
+
+/* === Tabla de transacciones === */
+.tabla-container {
+    background: var(--bg-surface);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    overflow-x: auto;
+    transition: background var(--transicion);
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla th {
+    background: var(--bg-surface-2);
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-label);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.tabla td {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--bg-surface-2);
+    color: var(--text-primary);
+}
+
+.tabla tr:hover td { background: var(--bg-surface-2); }
+
+.valor-positivo { color: var(--verde); font-weight: 600; }
+.valor-negativo { color: var(--rojo); font-weight: 600; }
+
+/* === Formulario de operación === */
+.form-operacion {
+    background: var(--bg-surface);
+    border-radius: var(--radio);
+    padding: 28px;
+    box-shadow: var(--sombra);
+    max-width: 500px;
+    transition: background var(--transicion);
+}
+
+.info-cuenta {
+    background: var(--bg-surface-2);
+    border-radius: var(--radio-sm);
+    padding: 16px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    transition: background var(--transicion);
+}
+
+.info-cuenta p {
+    font-size: 0.9rem;
+    padding: 4px 0;
+    color: var(--text-primary);
+}
+
+/* === Resumen de transacción exitosa === */
+.resumen-transaccion {
+    margin-top: 24px;
+    background: var(--bg-surface);
+    border-radius: var(--radio);
+    padding: 24px;
+    box-shadow: var(--sombra);
+    border-left: 4px solid var(--verde);
+    transition: background var(--transicion);
+}
+
+.success-title {
+    color: var(--verde);
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.resumen-transaccion p {
+    padding: 6px 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--bg-surface-2);
+    color: var(--text-primary);
+}
+
+.resumen-transaccion p:last-child { border-bottom: none; }
+.resumen-transaccion .btn-outline { margin-top: 16px; }
+
+/* ==============================
+   CERTIFICADO BANCARIO
+   ============================== */
+.certificado-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.certificado-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.certificado {
+    background: var(--bg-surface);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: 48px 40px;
+    max-width: 700px;
+    border: 2px solid var(--border-color);
+    transition: background var(--transicion);
+}
+
+.certificado__header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--azul-primario);
+    margin-bottom: 32px;
+}
+
+.certificado__header .logo { justify-content: center; margin-bottom: 4px; }
+
+.certificado__header p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.certificado__body h2 {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+}
+
+.certificado__fecha {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+.certificado__texto p {
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.certificado__titular {
+    font-size: 1.15rem !important;
+    font-weight: 600;
+    text-align: center;
+    color: var(--azul-primario);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.certificado__tabla {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.certificado__tabla td {
+    padding: 8px 12px;
+    font-size: 0.92rem;
+    border-bottom: 1px solid var(--bg-surface-2);
+    color: var(--text-primary);
+}
+
+.certificado__footer {
+    margin-top: 48px;
+    text-align: center;
+}
+
+.firma-linea {
+    width: 200px;
+    height: 1px;
+    background: var(--text-primary);
+    margin: 0 auto 8px;
+    opacity: 0.35;
+}
+
+.certificado__footer p {
+    font-size: 0.88rem;
+    color: var(--text-label);
+}

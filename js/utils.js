@@ -20,12 +20,9 @@ function formatearMoneda(valor) {
 function formatearFecha(fechaStr) {
     const fecha = new Date(fechaStr);
     return fecha.toLocaleDateString("es-CO", {
-        //El año completo
-        year: "numeric", 
-        //El nombre completo del mes
+        year: "numeric",
         month: "long",
         day: "numeric",
-        //Aqui nos dan la hora y minutos en ods cifras
         hour: "2-digit",
         minute: "2-digit",
     });
@@ -129,7 +126,6 @@ function validarFormatoPassword(password) {
 }
 
 // --- OBTENER USUARIOS DE LOCALSTORAGE ---
-// localStorage guarda todo como texto, JSON.parse lo convierte a array
 function obtenerUsuarios() {
     const datos = localStorage.getItem("acmebank_usuarios");
     return datos ? JSON.parse(datos) : [];
@@ -252,9 +248,8 @@ function actualizarBotonTema(tema) {
 function exportarDatosJSON() {
     const usuarios = obtenerUsuarios();
 
-    // Creamos el objeto que vamos a exportar
     const datos = {
-        exportado: new Date().toISOString(),  // Fecha de exportación
+        exportado: new Date().toISOString(),
         version: "1.0",
         banco: "Banco Acme",
         usuarios: usuarios
@@ -294,7 +289,6 @@ function importarDatosJSON(archivo) {
         // Esta función se ejecuta cuando el archivo termina de leerse
         lector.onload = function(evento) {
             try {
-                // Convertimos el texto del archivo a objeto JavaScript
                 const datos = JSON.parse(evento.target.result);
 
                 // Verificamos que el archivo tenga el formato correcto
@@ -303,39 +297,33 @@ function importarDatosJSON(archivo) {
                     return;
                 }
 
-                // Obtenemos los usuarios que ya existen en el sistema
                 const usuariosActuales = obtenerUsuarios();
                 let importados = 0;
 
-                // Por cada usuario en el archivo importado...
                 datos.usuarios.forEach(function(usuarioImportado) {
-                    // Verificamos si ya existe uno con el mismo tipo e ID
+                    // Solo importar si no existe ya un usuario con ese tipo e ID
                     const yaExiste = usuariosActuales.some(function(u) {
                         return u.tipoId === usuarioImportado.tipoId && u.numId === usuarioImportado.numId;
                     });
 
-                    // Solo lo agregamos si NO existe ya
                     if (!yaExiste) {
                         usuariosActuales.push(usuarioImportado);
                         importados++;
                     }
                 });
 
-                // Guardamos el listado actualizado
                 guardarUsuarios(usuariosActuales);
-                resolve(importados); // Éxito: decimos cuántos se importaron
+                resolve(importados);
 
             } catch (error) {
                 reject("Error al leer el archivo. Verifique que sea un JSON válido.");
             }
         };
 
-        // Esta función se ejecuta si hay un error al leer el archivo
         lector.onerror = function() {
             reject("No se pudo abrir el archivo.");
         };
 
-        // Iniciamos la lectura del archivo como texto
         lector.readAsText(archivo);
     });
 }

@@ -1,0 +1,69 @@
+/* ==============================
+   RESPONSIVE
+   ============================== */
+@media (max-width: 768px) {
+
+    body { overflow-x: hidden; }
+    .page-auth { overflow-x: hidden; }
+
+    .page-auth .theme-toggle {
+        position: fixed;
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Auth */
+    .auth-container { max-width: 100%; padding: 0 16px; }
+    .auth-container:has(.auth-card--wide) { max-width: 100%; }
+    .auth-card--wide { max-width: 100%; }
+    .auth-card { padding: 30px 22px; }
+
+    /* Formularios */
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group input,
+    .form-group select { min-width: 0; max-width: 100%; }
+
+    /* Sidebar */
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .menu-toggle { display: flex; }
+
+    /* Dashboard — contenido principal */
+    .main-content { margin-left: 0; padding: 20px 16px; padding-top: 64px; max-width: 100%; }
+    .dash-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .dash-header h1 { font-size: 1.3rem; }
+
+    /* Tabla de transacciones */
+    .tabla { min-width: 520px; }
+    .tabla th { padding: 10px; font-size: 0.72rem; }
+    .tabla td { padding: 10px; font-size: 0.83rem; white-space: nowrap; }
+
+    /* Tarjeta de cuenta y certificado */
+    .cuenta-card { padding: 20px 22px; aspect-ratio: auto; min-height: 220px; }
+    .cuenta-card::before { top: 10px; right: 15px; font-size: 0.5rem; }
+    .cuenta-saldo { font-size: 1.6rem; }
+    .cuenta-card__footer { flex-wrap: wrap; gap: 10px; }
+    .certificado { padding: 24px 16px; }
+    .seccion-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .certificado-actions { flex-wrap: wrap; }
+}
+
+@media (max-width: 480px) {
+    .auth-links { flex-direction: column; gap: 8px; text-align: center; }
+    .btn-group { flex-direction: column; }
+}
+
+/* ==============================
+   IMPRESIÓN
+   ============================== */
+@media print {
+    .sidebar, .menu-toggle, .btn, .nav-item,
+    .dash-header, .certificado-actions, .theme-toggle {
+        display: none !important;
+    }
+    .main-content { margin: 0; padding: 0; }
+    .seccion { display: block !important; box-shadow: none; }
+    .certificado { border: 1px solid #ccc; box-shadow: none; }
+}

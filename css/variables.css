@@ -1,0 +1,94 @@
+/* ==============================
+   VARIABLES CSS — ACME BANCO
+   ============================== */
+:root {
+    --azul-primario: #1a4fd6;
+    --azul-hover:    #1440b8;
+    --azul-claro:    #4a7fe8;
+    --navy-deep:     #0b1a3d;
+    --verde:         #16a34a;
+    --rojo:          #dc2626;
+
+    --bg-body:       #f0f4fa;
+    --bg-surface:    #ffffff;
+    --bg-surface-2:  #f4f7fc;
+    --bg-input:      #ffffff;
+    --bg-hover:      #eef2fb;
+    --bg-active:     #dde8ff;
+    --bg-active-text:#1a4fd6;
+
+    --text-primary:  #0b1a3d;
+    --text-secondary:#1e3260;
+    --text-muted:    #8494b4;
+    --text-label:    #4a5a80;
+
+    --border-color:  #d8e2f4;
+    --border-input:  #cdd9f0;
+    --border-focus:  rgba(26, 79, 214, 0.18);
+
+    --rojo-suave:    #fef2f2;
+    --verde-suave:   #f0fdf4;
+    --azul-suave:    #dde8ff;
+
+    --sombra:        0 1px 4px rgba(11,26,61,0.07), 0 4px 16px rgba(11,26,61,0.05);
+    --sombra-lg:     0 8px 40px rgba(11,26,61,0.14), 0 2px 10px rgba(11,26,61,0.08);
+    --sombra-card:   0 24px 64px rgba(11,26,61,0.36), 0 4px 20px rgba(26,79,214,0.18);
+
+    --radio:         14px;
+    --radio-sm:      9px;
+    --transicion:    0.2s ease;
+}
+
+[data-theme="dark"] {
+    --bg-body:       #080f23;
+    --bg-surface:    #111c38;
+    --bg-surface-2:  #172040;
+    --bg-input:      #131f42;
+    --bg-hover:      #1e2d58;
+    --bg-active:     #162a5c;
+    --bg-active-text:#6b9cf8;
+
+    --text-primary:  #e4ecff;
+    --text-secondary:#c0ccec;
+    --text-muted:    #566080;
+    --text-label:    #8a9dc0;
+
+    --border-color:  #1e2d58;
+    --border-input:  #223060;
+    --border-focus:  rgba(107, 156, 248, 0.22);
+
+    --rojo-suave:    #3a1212;
+    --verde-suave:   #0c2418;
+    --azul-suave:    #162a5c;
+
+    --sombra:        0 1px 4px rgba(0,0,0,0.35), 0 4px 16px rgba(0,0,0,0.25);
+    --sombra-lg:     0 8px 40px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3);
+    --sombra-card:   0 24px 64px rgba(0,0,0,0.6), 0 4px 20px rgba(26,79,214,0.2);
+
+    --verde: #22c55e;
+    --rojo:  #f87171;
+}
+
+/* === BASE === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Solución al problema del responsive */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background var(--transicion), color var(--transicion);
+}
+
+h1, h2, h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: var(--text-primary);
+}
