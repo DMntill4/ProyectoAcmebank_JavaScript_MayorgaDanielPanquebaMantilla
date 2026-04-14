@@ -20,9 +20,12 @@ function formatearMoneda(valor) {
 function formatearFecha(fechaStr) {
     const fecha = new Date(fechaStr);
     return fecha.toLocaleDateString("es-CO", {
-        year: "numeric",
+        //El año completo
+        year: "numeric", 
+        //El nombre completo del mes
         month: "long",
         day: "numeric",
+        //Aqui nos dan la hora y minutos en ods cifras
         hour: "2-digit",
         minute: "2-digit",
     });

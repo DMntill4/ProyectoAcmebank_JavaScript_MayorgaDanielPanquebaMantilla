@@ -1,12 +1,7 @@
-// ==============================
-// LÓGICA DE REGISTRO DE USUARIO
-// ==============================
-
 function registrarUsuario() {
     // 1. Validar TODOS los campos (son obligatorios según los requerimientos)
     let esValido = true;
 
-    // Cada validarCampo verifica si el campo está vacío
     if (!validarCampo("regTipoId", "errRegTipoId", "Seleccione un tipo")) esValido = false;
     if (!validarCampo("regNumId", "errRegNumId", "Campo obligatorio")) esValido = false;
     if (!validarCampo("regNombres", "errRegNombres", "Campo obligatorio")) esValido = false;
@@ -19,11 +14,11 @@ function registrarUsuario() {
     if (!validarCampo("regPassword", "errRegPassword", "Campo obligatorio")) esValido = false;
     if (!validarCampo("regPasswordConfirm", "errRegPasswordConfirm", "Campo obligatorio")) esValido = false;
 
-    // 2. Validaciones específicas
-
+    // Verificar que solo sean numeros
     const regexSoloNumeros = /^[0-9]+$/;
     const tipoIdParaValidar = document.getElementById("regTipoId").value;
 
+    
     const regNumIdValue = document.getElementById("regNumId").value;
     if (regNumIdValue && !regexSoloNumeros.test(regNumIdValue)) {
         document.getElementById("errRegNumId").textContent = "Solo se permiten números";
@@ -36,29 +31,27 @@ function registrarUsuario() {
         document.getElementById("errRegNumId").textContent = "Solo se permiten números para este tipo de ID";
         esValido = false;
     }
-}
-
-
+}   //Validacion del campo de telefono
     const regTelefonoValue = document.getElementById("regTelefono").value;
     if (regTelefonoValue && !regexSoloNumeros.test(regTelefonoValue)) {
         document.getElementById("errRegTelefono").textContent = "Solo se permiten números";
         esValido = false;
     }
-
+    //Validacion del campo del email
     const email = document.getElementById("regEmail").value.trim();
     if (email && !validarEmail(email)) {
         document.getElementById("errRegEmail").textContent = "Email no válido";
         document.getElementById("regEmail").classList.add("input-error");
         esValido = false;
     }
-
+    //validamos el campo de password
     const password = document.getElementById("regPassword").value;
     if (password && !validarFormatoPassword(password)) {
         document.getElementById("errRegPassword").textContent = "Mínimo 8 caracteres";
         document.getElementById("regPassword").classList.add("input-error");
         esValido = false;
     }
-
+    //validamos el campo del confirm en password
     const passwordConfirm = document.getElementById("regPasswordConfirm").value;
     if (password && passwordConfirm && password !== passwordConfirm) {
         document.getElementById("errRegPasswordConfirm").textContent = "Las contraseñas no coinciden";
@@ -68,21 +61,21 @@ function registrarUsuario() {
 
     if (!esValido) return;
 
-    // 3. Verificar que el usuario no exista ya
+    //Verificar que el usuario no exista ya
     const numId = document.getElementById("regNumId").value.trim();
     const tipoId = document.getElementById("regTipoId").value;
     const usuarios = obtenerUsuarios();
 
-    // some() verifica si ALGÚN elemento cumple la condición
+    // Verifica si ALGÚN elemento cumple la condición (validamos que el user no se haya registrado anteriormente)
     const existe = usuarios.some((u) => u.tipoId === tipoId && u.numId === numId);
 
     if (existe) {
         mostrarAlerta("mensajeRegistro", "Ya existe una cuenta con esa identificación.", "error");
-        return;
+        
     }
 
-    // 4. Crear el objeto del nuevo usuario
-    // Este es el "modelo" de datos que guardaremos en localStorage
+    // Crear el objeto del nuevo usuario
+    // Este es el "modelo" de datos que se guarda en localStorage
     const nuevoUsuario = {
         tipoId: tipoId,
         numId: numId,
@@ -101,12 +94,13 @@ function registrarUsuario() {
         transacciones: [], // Array vacío para las futuras transacciones
     };
 
-    // 5. Agregar al array de usuarios y guardar
+    //Agregar al array de usuarios y guardar
     // push() agrega un elemento al final del array
     usuarios.push(nuevoUsuario);
+    //con esta linea guardamos los usuarios asi se recargue la pagina
     guardarUsuarios(usuarios);
 
-    // 6. Mostrar resumen de registro exitoso
+    // Mostrar resumen de registro exitoso
     document.getElementById("registroForm").style.display = "none";
     document.getElementById("resumenRegistro").style.display = "block";
 
